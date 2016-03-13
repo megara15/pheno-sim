@@ -49,7 +49,7 @@ def eq6(u, p, lamed):
     prob = (u * (1 + p)) / lamed
     return prob
 
-# lambda is a reserved word; combines all populations + level of preference
+# lambda is a reserved word; combines all populations including level of benefit of diploid pairs with a recessive partner
 
 
 def lamed(u, p, v, t, z, w, K, Q, J, N):
@@ -171,35 +171,48 @@ while n <= gen:
 print w_list[5]
 print u_list[5]
 print v_list[5]
-aa = (w/2) + u + (v/2)
-Aa = (Q + J + v)
-AA = (K + v + Q)
-
+aa = (w/2) + (u/2) + (v/2)
+Aa = (w/2) + (K/2) + (J/2)
+AA = (K/2) + (v/2) + (Q/2)
+a = sqrt(aa) #Frequency of 'a' allele
+A = 1-a #Frequency of 'A' allele
+Aa = 2*(a)*(A)
+# SUPER IMPORTANT: After running, if everything works, I want you to hashtag row 175 and unhashtag the bottom equation to see if they give the same results. If not, message me.
+# Aa = 2*(a)*(A)
 print "frequency of aa individuals: " + str(aa)
 print "frequency of Aa individuals: " + str(Aa)
 print "frequency of AA individuals: " + str(AA)
-
-
+print "frequency of 'a' allele:" + str(a)
+print "frequency of 'A' allele:" + str(A)
 # plt.xlabel('Time(s)')
 # plt.ylabel('Conc (M)')
 plt.title('probability of diploid mating pairs occuring in subsequent generatrions')
 # plt.axis([0,tmax,0,1.0])
-plt.plot(w_prob, 'red')
-plt.plot(K_prob, 'cyan')
+plt.plot(w_prob, 'red', ':')
+plt.plot(K_prob, 'red')
 plt.plot(Q_prob, 'green')
 plt.plot(J_prob, 'blue')
-plt.plot(v_prob, 'black')
-plt.plot(u_prob, 'purple')
+plt.plot(v_prob, 'green', ':')
+plt.plot(u_prob, 'blue', ':')
+plt.plot(total, 'black')
 plt.savefig("pair probabilities")
 plt.show()
 
 plt.title('population change of diplod pairs')
-plt.plot(w_list, 'red')
-plt.plot(K_list, 'cyan')
+plt.plot(w_list, 'red', ':')
+plt.plot(K_list, 'red')
 plt.plot(Q_list, 'green')
 plt.plot(J_list, 'blue')
-plt.plot(v_list, 'black')
-plt.plot(u_list, 'purple')
-plt.plot(N_graph, "pink")
+plt.plot(v_list, 'green', ':')
+plt.plot(u_list, 'blue', ':')
+plt.plot(N_graph, 'black')
 plt.savefig("population")
+plt.show()
+
+plt.title('proportion of each allele')
+plt.plot(A, 'red')
+plt.plot(a, 'orange')
+plt.ylabel("Allele Frequency")
+plt.xlabel("Generations")
+plt.savefig("alleles")
 plt.show()
