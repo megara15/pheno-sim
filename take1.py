@@ -84,7 +84,7 @@ z = float(sys.argv[8])
 # pref of w
 t = float(sys.argv[9])
 
-gen = 10
+gen = 5
 
 
 w_list = list()
@@ -118,7 +118,7 @@ N_graph.insert(0, N_0)
 
 # h = lamed(u, p, v, z, w, K, Q, J, N_0)
 
-n = 1
+n = 0
 N = N_0
 t = 1
 while n <= gen:
@@ -168,6 +168,17 @@ while n <= gen:
     u = N * prob6
     u_list.append(u)
 
+print w_list[5]
+print u_list[5]
+print v_list[5]
+aa = (w + u + v)
+Aa = (Q + J + v)/2
+AA = (K + v + Q)/2
+
+print "frequency of aa individuals: " + str(aa)
+print "frequency of Aa individuals: " + str(Aa)
+print "frequency of AA individuals: " + str(AA)
+
 
 # plt.xlabel('Time(s)')
 # plt.ylabel('Conc (M)')
@@ -179,7 +190,7 @@ plt.plot(w_prob, 'red')
 plt.plot(J_prob, 'blue')
 plt.plot(v_prob, 'black')
 plt.plot(u_prob, 'purple')
-plt.savefig("shitall")
+plt.savefig("pair probabilities")
 plt.show()
 
 plt.title('population change of diploid shit')
