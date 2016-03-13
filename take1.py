@@ -171,9 +171,9 @@ while n <= gen:
 print w_list[5]
 print u_list[5]
 print v_list[5]
-aa = (w + u + v)
-Aa = (Q + J + v)/2
-AA = (K + v + Q)/2
+aa = (w/2) + u + (v/2)
+Aa = (Q + J + v)
+AA = (K + v + Q)
 
 print "frequency of aa individuals: " + str(aa)
 print "frequency of Aa individuals: " + str(Aa)
@@ -185,8 +185,8 @@ print "frequency of AA individuals: " + str(AA)
 plt.title('probability of diploid mating pairs occuring in subsequent generatrions')
 # plt.axis([0,tmax,0,1.0])
 plt.plot(w_prob, 'red')
-# plt.plot(K_prob, 'cyan')
-# plt.plot(Q_prob, 'green')
+plt.plot(K_prob, 'cyan')
+plt.plot(Q_prob, 'green')
 plt.plot(J_prob, 'blue')
 plt.plot(v_prob, 'black')
 plt.plot(u_prob, 'purple')
@@ -200,6 +200,6 @@ plt.plot(Q_list, 'green')
 plt.plot(J_list, 'blue')
 plt.plot(v_list, 'black')
 plt.plot(u_list, 'purple')
-# plt.plot(N_graph, "pink")
+plt.plot(N_graph, "pink")
 plt.savefig("population")
 plt.show()
