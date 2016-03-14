@@ -118,6 +118,9 @@ N_graph.insert(0, N_0)
 
 # h = lamed(u, p, v, z, w, K, Q, J, N_0)
 
+littleA = list()
+bigA = list()
+
 n = 0
 N = N_0
 t = 1
@@ -168,15 +171,22 @@ while n <= gen:
     u = N * prob6
     u_list.append(u)
 
+    aa = (w/2) + (u/2) + (v/2)
+    Aa = (w/2) + (K/2) + (J/2)
+    AA = (K/2) + (v/2) + (Q/2)
+    a = np.sqrt(aa) + np.sqrt(Aa) #Frequency of 'a' allele
+    littleA.append(a)
+    A = np.sqrt(AA) + np.sqrt(Aa)
+    bigA.append(A)
+
 print w_list[5]
 print u_list[5]
 print v_list[5]
-aa = (w/2) + (u/2) + (v/2)
-Aa = (w/2) + (K/2) + (J/2)
-AA = (K/2) + (v/2) + (Q/2)
-a = sqrt(aa) #Frequency of 'a' allele
-A = 1-a #Frequency of 'A' allele
-Aa = 2*(a)*(A)
+#aa = (w/2) + (u/2) + (v/2)
+#Aa = (w/2) + (K/2) + (J/2)
+#AA = (K/2) + (v/2) + (Q/2)
+#a = np.sqrt(aa) + np.sqrt(Aa) #Frequency of 'a' allele
+#A = np.sqrt(AA) + np.sqrt(Aa) #Frequency of 'A' allele
 # SUPER IMPORTANT: After running, if everything works, I want you to hashtag row 175 and unhashtag the bottom equation to see if they give the same results. If not, message me.
 # Aa = 2*(a)*(A)
 print "frequency of aa individuals: " + str(aa)
@@ -188,30 +198,30 @@ print "frequency of 'A' allele:" + str(A)
 # plt.ylabel('Conc (M)')
 plt.title('probability of diploid mating pairs occuring in subsequent generatrions')
 # plt.axis([0,tmax,0,1.0])
-plt.plot(w_prob, 'red', ':')
+plt.plot(w_prob, linestyle=':', color='red')
 plt.plot(K_prob, 'red')
 plt.plot(Q_prob, 'green')
 plt.plot(J_prob, 'blue')
-plt.plot(v_prob, 'green', ':')
-plt.plot(u_prob, 'blue', ':')
+plt.plot(v_prob, linestyle=':', color='green')
+plt.plot(u_prob, linestyle=':',color='blue')
 plt.plot(total, 'black')
 plt.savefig("pair probabilities")
 plt.show()
 
 plt.title('population change of diplod pairs')
-plt.plot(w_list, 'red', ':')
+plt.plot(w_list, linestyle=':', color='red')
 plt.plot(K_list, 'red')
 plt.plot(Q_list, 'green')
 plt.plot(J_list, 'blue')
-plt.plot(v_list, 'green', ':')
-plt.plot(u_list, 'blue', ':')
+plt.plot(v_list, linestyle=':', color='green')
+plt.plot(u_list, linestyle=':', color='blue')
 plt.plot(N_graph, 'black')
 plt.savefig("population")
 plt.show()
 
 plt.title('proportion of each allele')
-plt.plot(A, 'red')
-plt.plot(a, 'orange')
+plt.plot(littleA, 'red')
+plt.plot(bigA, 'orange')
 plt.ylabel("Allele Frequency")
 plt.xlabel("Generations")
 plt.savefig("alleles")
